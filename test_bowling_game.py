@@ -10,3 +10,8 @@ class TestBlowingGame(TestCase):
         for roll in range(20):
             self.game.roll(0)
         self.assertEqual(self.game.score(), 0)
+
+    def test_all_ones_game(self):
+        for roll in range(20):
+            self.game.roll(1)
+        self.assertEqual(self.game.score(), 20)
