@@ -24,8 +24,8 @@ class TestBlowingGame(TestCase):
         for roll in range(10):
             self.game.roll(2)
         for roll in range(10):
-            self.game.roll(5)
-        self.assertEqual(self.game.score(), 70)
+            self.game.roll(4)
+        self.assertEqual(self.game.score(), 60)
 
     def test_one_spare(self):
         self.game.roll(7)
