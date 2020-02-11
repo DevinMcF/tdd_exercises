@@ -1,5 +1,3 @@
-Smallest Text
-
 ###### Tiny Text
 
 ##### Small Text
@@ -8,8 +6,8 @@ Smallest Text
 
 ### Big Text
 
-## Bigger Text
+## Huge Text
 
-# Biggest Text
+# Giant Text
 
 #### 
