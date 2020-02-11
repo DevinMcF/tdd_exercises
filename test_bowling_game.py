@@ -6,6 +6,10 @@ class TestBlowingGame(TestCase):
     def setUp(self):
         self.game = BowlingGame()
 
+    def roll_many(self, num_rolls, pins):
+        for roll in range(num_rolls):
+            self.game.roll(pins)
+
     def test_gutter_game(self):
         for roll in range(20):
             self.game.roll(0)
@@ -22,3 +26,9 @@ class TestBlowingGame(TestCase):
         for roll in range(10):
             self.game.roll(5)
         self.assertEqual(self.game.score(), 70)
+
+    def test_one_spare(self):
+        self.game.roll(7)
+        self.game.roll(3)  # A Spare
+        self.roll_many(18, 1)
+        self.assertEqual(self.game.score(), 29)
