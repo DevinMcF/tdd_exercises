@@ -7,4 +7,6 @@ class TestBlowingGame(TestCase):
         self.game = BowlingGame()
 
     def test_gutter_game(self):
-        pass
+        for roll in range(20):
+            self.game.roll(0)
+        self.assertEqual(self.game.score(), 0)
