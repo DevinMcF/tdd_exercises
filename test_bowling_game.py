@@ -32,3 +32,10 @@ class TestBlowingGame(TestCase):
         self.game.roll(3)  # A Spare
         self.roll_many(18, 1)
         self.assertEqual(self.game.score(), 29)
+
+    def test_one_strike(self):
+        self.game.roll(10)
+        self.game.roll(3)
+        self.game.roll(2)
+        self.roll_many(18, 1)
+        self.assertEqual(self.game.score(), 38)
