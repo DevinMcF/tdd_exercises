@@ -17,16 +17,14 @@ def is_english_vowel(c):
     Returns True if c is an english vowel
     and False otherwise.
     """
-    vowels = ('a', 'e', 'i', 'o', 'u', 'y')
-    return c.lower() in vowels
+    return c.lower() in ('a', 'e', 'i', 'o', 'u', 'y')
 
 
 def count_num_vowels(s):
     """
     Returns the number of vowels in a string s.
     """
-    vowels = ('a', 'e', 'i', 'o', 'u', 'y')
-    return len([ch for ch in s if ch in vowels])
+    return len([ch for ch in s if ch in ('a', 'e', 'i', 'o', 'u', 'y')])
 
 
 def histogram(lst):
@@ -57,8 +55,7 @@ def validate_dna(s):
     Return True if the DNA string only contains characters
     a, c, t, or g (lower or uppercase). False otherwise.
     """
-    chars = ('a', 'c', 't', 'g')
-    return all(ch.lower() in chars for ch in s)
+    return all(ch.lower() in ('a', 'c', 't', 'g') for ch in s)
 
 
 def base_pair(c):
@@ -67,12 +64,8 @@ def base_pair(c):
     of the base pair. If the base is not recognized,
     return 'unknown'.
     """
-    pairs = {"a": "t",
-             "t": "a",
-             "c": "g",
-             "g": "c"}
     try:
-        return pairs[c.lower()]
+        return {"a": "t", "t": "a", "c": "g", "g": "c"}[c.lower()]
     except:
         return "unknown"
 
@@ -90,11 +83,7 @@ def get_complement(s):
     Return the DNA complement in uppercase
     (A -> T, T-> A, C -> G, G-> C).
     """
-    pairs = {"A": "T",
-             "T": "A",
-             "C": "G",
-             "G": "C"}
-    return ''.join([pairs[ch] for ch in s.upper()])
+    return ''.join([{"A": "T", "T": "A", "C": "G", "G": "C"}[ch] for ch in s.upper()])
 
 
 def get_reverse_complement(s):
@@ -102,11 +91,7 @@ def get_reverse_complement(s):
     Return the reverse complement of string s
     (complement reversed in order).
     """
-    pairs = {"A": "T",
-             "T": "A",
-             "C": "G",
-             "G": "C"}
-    return ''.join([pairs[ch] for ch in s.upper()])[::-1]
+    return ''.join([{"A": "T", "T": "A", "C": "G", "G": "C"}[ch] for ch in s.upper()])[::-1]
 
 
 def remove_substring(substring, string):
@@ -142,9 +127,7 @@ def read_column(file_name, column_number):
     Reads column column_number from file file_name
     and returns the values as floats in a list.
     """
-    with open(file_name, 'r') as f:
-        text = f.read()
-    return [float(ch[column_number - 1].replace(' ', '')) for ch in [ch.split('  ') for ch in text.replace('    ', '').split('\n')]]
+    return [float(ch[column_number - 1].replace(' ', '')) for ch in [ch.split('  ') for ch in open(file_name, 'r').read().replace('    ', '').split('\n')]]
 
 
 def character_statistics(file_name):
@@ -156,11 +139,7 @@ def character_statistics(file_name):
     Use the isalpha() method to figure out
     whether the character is in the alphabet.
     """
-    alphabet = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
-    with open(file_name, 'r') as f:
-        text = f.read().lower()
-    count = {text.count(ch): ch for ch in text if ch in alphabet}
-    return count[max(count)], count[min(count)]
+    return {open(file_name, 'r').read().lower().count(ch): ch for ch in open(file_name, 'r').read().lower() if ch in ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')}[max({open(file_name, 'r').read().lower().count(ch): ch for ch in open(file_name, 'r').read().lower() if ch in ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')})], {open(file_name, 'r').read().lower().count(ch): ch for ch in open(file_name, 'r').read().lower() if ch in ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')}[min({open(file_name, 'r').read().lower().count(ch): ch for ch in open(file_name, 'r').read().lower() if ch in ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')})]
 
 
 def pythagorean_triples(n):
@@ -169,10 +148,6 @@ def pythagorean_triples(n):
     (a, b, c) where a < b < c <= n.
     """
     lst = []
-    # loop over all a < b < c <= n
-    for c in range(1, n + 1):
-        for b in range(1, c):
-            for a in range(1, b):
-                if a*a + b*b == c*c:
-                    lst.append((a, b, c))
+    [[[lst.append((a, b, c)) for a in range(1, b) if a * a + b * b == c * c] for b in range(1, c)] for c in range(1, n + 1)]
     return lst
+
