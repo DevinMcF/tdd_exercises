@@ -142,4 +142,6 @@ def read_column(file_name, column_number):
     Reads column column_number from file file_name
     and returns the values as floats in a list.
     """
-    return None
+    with open(file_name, 'r') as f:
+        text = f.read()
+    return [float(ch[column_number - 1].replace(' ', '')) for ch in [ch.split('  ') for ch in text.replace('    ', '').split('\n')]]
