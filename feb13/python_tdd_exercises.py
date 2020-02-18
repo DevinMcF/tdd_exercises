@@ -49,13 +49,7 @@ def find_longest_word(s):
     Returns the longest word in string s.
     In case there are several, return the first.
     """
-    lengths = {}
-    for word in s.split(' '):
-        if len(word) in lengths:
-            pass
-        else:
-            lengths[len(word)] = word
-    return lengths.get(max(lengths))
+    return [word for word in s.split(' ')][[len(word) for word in s.split(' ')].index(max([len(word) for word in s.split(' ')]))]
 
 
 def validate_dna(s):
@@ -141,3 +135,11 @@ def get_3mer_usage_chart(s):
     of the 3-mer.
     """
     return sorted(set([(tri, sum([[s[i:i + 3] for i in range(x, len(s), 3) if len(s[i:i + 3]) == 3] for x in range(3)], []).count(tri)) for tri in sum([[s[i:i + 3] for i in range(x, len(s), 3) if len(s[i:i + 3]) == 3] for x in range(3)], [])]))
+
+
+def read_column(file_name, column_number):
+    """
+    Reads column column_number from file file_name
+    and returns the values as floats in a list.
+    """
+    return None

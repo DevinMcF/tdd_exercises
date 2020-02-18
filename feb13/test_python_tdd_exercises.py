@@ -111,3 +111,25 @@ class TDDExerciseSuite(TestCase):
         result.append(('TAG', 1))
         result.append(('TTA', 2))
         self.assertEqual(get_3mer_usage_chart(s), result)
+
+    def test_read_column(self):
+        import tempfile
+        import os
+
+        text = """1   0.1  0.001
+    2   0.2  0.002
+    3   0.3  0.003
+    4   0.4  0.004
+    5   0.5  0.005
+    6   0.6  0.006"""
+
+        # we save this text to a temporary file
+        file_name = tempfile.mkstemp()[1]
+        with open(file_name, 'w') as f:
+            f.write(text)
+
+        # and now we pass the file name to the function which will read the column
+        self.assertEqual(read_column(file_name, 2), [0.1, 0.2, 0.3, 0.4, 0.5, 0.6])
+
+        # we remove the temporary file
+        os.unlink(file_name)
