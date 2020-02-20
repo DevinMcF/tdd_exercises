@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from feb13.python_tdd_exercises import *
+from python_tdd_exercises import *
 
 
 class TDDExerciseSuite(TestCase):
