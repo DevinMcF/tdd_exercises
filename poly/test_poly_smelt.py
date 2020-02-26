@@ -11,3 +11,10 @@ class TestApp(TestCase):
         """
 
         self.assertEqual(str(self.p1),'0')
+
+    def constant_polynomial(self):
+        """
+        Tests for a non zero output of a Polynomial with non zero data
+        """
+        self.p2 = Polynomial('42')
+        self.assertEqual(str(self.p2),'42')
